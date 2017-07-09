@@ -23,7 +23,8 @@ class App extends Component {
         this.setState({
           celsius: (data.data.main.temp - 273.15).toFixed(2),
           farenheit: ((9 / 5) * (data.data.main.temp - 273.15) + 32).toFixed(2),
-          isCelsius: this.state.isCelsius
+          isCelsius: this.state.isCelsius,
+          weather: data.data.weather[0].description,
         })
       })
     })
@@ -38,11 +39,16 @@ class App extends Component {
     return <p>{this.state.farenheit + ' ' + String.fromCharCode(176) + 'C'}</p>
   }
 
+  description = () => {
+    return <p>{this.state.weather}</p>;
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Weather App</h1>
         {this.state.isCelsius ? this.celsiusTemp() : this.farenheitTemp()}
+        {this.description()}
       </div>
     );
   }
