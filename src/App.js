@@ -12,6 +12,7 @@ class App extends Component {
       farenheit: '',
       isCelsius: true,
       localWeather: '',
+      weatherId: 0,
     }
   }
 
@@ -26,6 +27,7 @@ class App extends Component {
           farenheit: ((9 / 5) * (data.data.main.temp - 273.15) + 32).toFixed(2),
           isCelsius: this.state.isCelsius,
           weather: data.data.weather[0].description,
+          weatherId: data.data.weather[0].id,
         })
       })
     })
@@ -41,7 +43,7 @@ class App extends Component {
   }
 
   description = () => {
-    return <p>{this.state.weather}</p>;
+    return <p>{this.state.weather} <i className={"wi wi-owm-" + this.state.weatherId} title="Edit"></i> </p>;
   }
 
   isCelsius = (bool) => {
@@ -56,6 +58,7 @@ class App extends Component {
         <h1>Weather App</h1>
         {this.state.isCelsius ? this.celsiusTemp() : this.farenheitTemp()}
         {this.description()}
+        
         <Toggle isCelsius={this.isCelsius.bind(this)} />
       </div>
     );
