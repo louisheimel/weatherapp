@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import Toggle from './components/Toggle.js';
 
 class App extends Component {
   constructor(props) {
@@ -36,11 +37,17 @@ class App extends Component {
   }
 
   farenheitTemp = () => {
-    return <p>{this.state.farenheit + ' ' + String.fromCharCode(176) + 'C'}</p>
+    return <p>{this.state.farenheit + ' ' + String.fromCharCode(176) + 'F'}</p>
   }
 
   description = () => {
     return <p>{this.state.weather}</p>;
+  }
+
+  isCelsius = (bool) => {
+    this.setState({
+      isCelsius: bool,
+    })
   }
 
   render() {
@@ -49,6 +56,7 @@ class App extends Component {
         <h1>Weather App</h1>
         {this.state.isCelsius ? this.celsiusTemp() : this.farenheitTemp()}
         {this.description()}
+        <Toggle isCelsius={this.isCelsius.bind(this)} />
       </div>
     );
   }
