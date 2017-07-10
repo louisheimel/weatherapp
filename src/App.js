@@ -28,22 +28,23 @@ class App extends Component {
           isCelsius: this.state.isCelsius,
           weather: data.data.weather[0].description,
           weatherId: data.data.weather[0].id,
+          cityName: data.data.name,
         })
       })
     })
 
   }
 
-  celsiusTemp = () => {
-   return <p>{this.state.celsius + ' ' + String.fromCharCode(176) + 'C'}</p>
+  celsiusTemp = (styles) => {
+   return <p style={styles}>{this.state.celsius + ' ' + String.fromCharCode(176) + 'C'}</p>
   }
 
-  farenheitTemp = () => {
-    return <p>{this.state.farenheit + ' ' + String.fromCharCode(176) + 'F'}</p>
+  farenheitTemp = (styles) => {
+    return <p style={styles}>{this.state.farenheit + ' ' + String.fromCharCode(176) + 'F'}</p>
   }
 
-  description = () => {
-    return <p>{this.state.weather} <i className={"wi wi-owm-" + this.state.weatherId} title="Edit"></i> </p>;
+  description = (styles) => {
+    return <p style={styles}>{this.state.weather} <i className={"wi wi-owm-" + this.state.weatherId} title="Edit"></i> </p>;
   }
 
   isCelsius = (bool) => {
@@ -53,13 +54,28 @@ class App extends Component {
   }
 
   render() {
+    const styles = {
+      h2: {
+        fontSize: '40px',
+      },
+      temp: {
+        fontSize: '20px',
+      },
+      desc: {
+        fontSize: '20px',
+      },
+      citation: {
+        marginTop: '20px'
+      },
+    }
     return (
       <div className="App">
         <h1>Weather App</h1>
-        {this.state.isCelsius ? this.celsiusTemp() : this.farenheitTemp()}
-        {this.description()}
-        
+        <h2 style={styles.h2}>{this.state.cityName}</h2>
+        {this.state.isCelsius ? this.celsiusTemp(styles.temp) : this.farenheitTemp(styles.temp)}
+        {this.description(styles.desc)}
         <Toggle isCelsius={this.isCelsius.bind(this)} />
+        <p style={styles.citation}>Using Erik Flowers' Weather Icons: https://erikflowers.github.io/weather-icons/</p>
       </div>
     );
   }
