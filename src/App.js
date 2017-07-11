@@ -21,7 +21,8 @@ class App extends Component {
       var lat = pos.coords.latitude
       var long = pos.coords.longitude
 //      var url = "https://sheltered-mesa-65680.herokuapp.com/" + lat + "/" + long
-      var url = 'http://localhost:3001/' + lat + '/' + long
+      var weather_server = 'https://sheltered-mesa-65680.herokuapp.com/'
+      var url = weather_server + lat + '/' + long
       axios.get(url)
       .then(data => {
         console.log(data)
