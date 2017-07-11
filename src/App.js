@@ -18,6 +18,8 @@ class App extends Component {
 
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(pos => {
+      const lat = pos.coords.latitude,
+            long = pos.coords.longitude
       var url = "https://sheltered-mesa-65680.herokuapp.com/" + lat + "/" + long
       axios.get(url)
       .then(data => {
