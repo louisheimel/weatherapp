@@ -25,12 +25,12 @@ class App extends Component {
       .then(data => {
         console.log(data)
         this.setState({
-          celsius: (data.main.temp - 273.15).toFixed(2),
-          farenheit: ((9 / 5) * (data.main.temp - 273.15) + 32).toFixed(2),
+          celsius: (data.data.main.temp - 273.15).toFixed(2),
+          farenheit: ((9 / 5) * (data.data.main.temp - 273.15) + 32).toFixed(2),
           isCelsius: this.state.isCelsius,
-          weather: data.weather[0].description,
-          weatherId: data.weather[0].id,
-          cityName: data.name,
+          weather: data.data.weather[0].description,
+          weatherId: data.data.weather[0].id,
+          cityName: data.data.name,
         })
       })
     })
