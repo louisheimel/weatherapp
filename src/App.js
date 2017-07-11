@@ -18,7 +18,10 @@ class App extends Component {
 
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(pos => {
-      var url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + pos.coords.latitude + '&lon=' + pos.coords.longitude + '&APPID=cf82b1c6672f73b7b74056a6905fb14a'
+      var lat = pos.coords.latitude
+      var long = pos.coords.longitude
+//      var url = "https://sheltered-mesa-65680.herokuapp.com/" + lat + "/" + long
+      var url = 'http://localhost:3001/' + lat + '/' + long
       axios.get(url)
       .then(data => {
         console.log(data)
