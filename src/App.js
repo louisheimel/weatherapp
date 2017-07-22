@@ -78,6 +78,8 @@ class App extends Component {
         {this.description(styles.desc)}
         <Toggle isCelsius={this.isCelsius.bind(this)} />
         <p style={styles.citation}>Using Erik Flowers' Weather Icons: https://erikflowers.github.io/weather-icons/</p>
+        <p>Weather App code repo: <a href="https://github.com/louisheimel/weatherapp">https://github.com/louisheimel/weatherapp</a></p>
+        <p>Proxy server code repo: <a href="https://github.com/louisheimel/weatherserver">https://github.com/louisheimel/weatherserver</a></p>
       </div>
     );
   }
